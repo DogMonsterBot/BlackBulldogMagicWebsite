@@ -25,7 +25,8 @@ def button_click(update, context):
 
 # Main function to start the bot
 def main():
-    updater = Updater("YOUR_TELEGRAM_BOT_TOKEN", use_context=True)
+    updater = Updater("7642252782:AAGUVwNlrJIUK1-aoz0Sq3ElACpyTjGzSPE
+    ", use_context=True)
     dp = updater.dispatcher
 
     # Add command handler for /start
