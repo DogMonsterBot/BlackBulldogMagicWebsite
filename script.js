@@ -4,18 +4,27 @@ document.querySelector('.nav-toggle').addEventListener('click', () => {
 });
 
 
-// Example pseudocode for your backend (Node.js or similar)
-app.get('/auth/telegram/callback', (req, res) => {
-    const { id, first_name, last_name, username, photo_url } = req.query;
+const crypto = require('crypto');
 
-    // Validate the data here
-    // Check the signature, ensuring it comes from Telegram
-
-    // If valid, log the user in
-    // Create a session or token for the user
+// Telegram sends an object with user data
+function checkTelegramAuth(data, botToken) {
+    const secret = crypto.createHash('sha256').update(botToken).digest();
+    const checkString = Object.keys(data)
+        .filter(key => key !== 'hash')
+        .sort()
+        .map(key => `${key}=${data[key]}`)
+        .join('\n');
     
-    // You can also store user info in your database if needed
+    const hmac = crypto.createHmac('sha256', secret).update(checkString).digest('hex');
+    return hmac === data.hash;
+}
 
-    // Redirect to a success page
-    res.redirect('/success');
-});
+// Example usage
+const userData = { /* User data from Telegram */ };
+const botToken = 'YOUR_BOT_TOKEN'; // 7642252782:AAGUVwNlrJIUK1-aoz0Sq3ElACpyTjGzSPE 
+
+if (checkTelegramAuth(userData, botToken)) {
+    console.log('User is authenticated!');
+} else {
+    console.log('Authentication failed.');
+}
