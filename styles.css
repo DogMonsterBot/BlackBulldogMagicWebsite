@@ -7,11 +7,15 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: black;
     color: white;
     line-height: 1.6;
     overflow-x: hidden;
+    background-image: url('background.jpg'); /* مسیر تصویر پس‌زمینه */
+    background-size: cover; /* برای پوشش کامل پس‌زمینه */
+    background-position: center; /* قرار دادن تصویر در مرکز */
+    background-repeat: no-repeat; /* جلوگیری از تکرار تصویر */
 }
+
 
 /* Animated background */
 .stars {
