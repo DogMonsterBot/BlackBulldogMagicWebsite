@@ -111,7 +111,7 @@ nav a:hover {
 
 /* Main content */
 section {
-    max-width: 1200px;
+    max-width: 500px;
     margin: 2rem auto;
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.7);
